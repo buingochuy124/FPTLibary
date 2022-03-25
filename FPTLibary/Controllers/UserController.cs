@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using DataAccess.DTO;
+using System.Web.Mvc;
 
 namespace FPTLibary.Controllers
 {
@@ -7,7 +8,26 @@ namespace FPTLibary.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                var accountLogin = (UserDTO)Session[DataAccess.Libs.Config.SessionAccount] != null ? 
+                    (UserDTO)Session[DataAccess.Libs.Config.SessionAccount] : new UserDTO(); 
+
+                if (accountLogin.UserId <= 0)
+                {
+                    return RedirectToAction("login", "Unauthenticate");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
         }
 
 

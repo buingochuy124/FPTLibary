@@ -8,7 +8,7 @@ namespace DataAccess.DTO
 {
     public class UserDTO
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string UserAccount { get; set; }
         public string UserPassword { get; set; }
         public string UserFullName { get; set; }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Libs\Config.cs" />
     <Compile Include="ConnectDb.cs" />
     <Compile Include="DAOImpl\UserDAOImpl.cs" />
     <Compile Include="DAO\UserDAO.cs" />
