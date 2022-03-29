@@ -10,6 +10,5 @@ namespace DataAccess.Libs
     {
         public static string SessionAccount = "Session.UserLogin";
 
-
     }
 }

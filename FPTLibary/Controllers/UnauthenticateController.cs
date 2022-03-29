@@ -27,12 +27,18 @@ namespace FPTLibary.Controllers
 
             try
             {
-
-
                 if (result > 0)
                 {
                     returnData.ResponseCode = 1;
                     returnData.Description = "Login successfully !!!";
+
+                    Session[DataAccess.Libs.Config.SessionAccount] = new DataAccess.DAOImpl
+                        .UserDAOImpl()
+                        .Users_GetList()
+                        .FirstOrDefault(u => u.UserAccount == UserAccount);
+
+                    
+
                     return Json(returnData, JsonRequestBehavior.AllowGet);
                 }
                 else if (result == -1)

@@ -1,0 +1,63 @@
+﻿@model List<DataAccess.DTO.UserDTO>
+@{
+    ViewBag.Title = "UserManagement";
+}
+
+<h2>UserManagement</h2>
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                UserAccount
+            </th>
+            <th>
+                UserPassword
+            </th>
+            <th>
+                UserFullName
+            </th>
+
+            <th>
+                UserAdress
+            </th>
+            <th>
+                UserPhoneNumber
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @item.UserAccount
+                </td>
+                <td>
+                    @item.UserPassword
+                </td>
+                <td>
+                    @item.UserFullName
+                </td>
+                <td>
+                    @item.UserAdress
+                </td>
+                <td>
+                    @item.UserPhoneNumber
+                </td>
+                <td>
+                    @ViewData["test"]
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
