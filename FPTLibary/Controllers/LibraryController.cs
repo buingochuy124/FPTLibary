@@ -11,7 +11,18 @@ namespace FPTLibary.Controllers
         // GET: Library
         public ActionResult Index()
         {
-            return View();
+            var result = new DataAccess.DAOImpl.BookDAOImpl().Books_GetList();
+
+            foreach (var item in result)
+            {
+                item.CategoryName = new DataAccess.DAOImpl.CategoryDAOImpl()
+                    .Categories_GetList()
+                    .FirstOrDefault(c => c.CategoryID == item.CategoryID)
+                    .CategoryName;
+            }
+
+
+            return View(result);
         }
     }
 }

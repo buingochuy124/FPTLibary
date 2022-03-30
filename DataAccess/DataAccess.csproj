@@ -41,7 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAOImpl\BookDAOImpl.cs" />
+    <Compile Include="DAOImpl\CategoryDAOImpl.cs" />
+    <Compile Include="DAO\BookDAO.cs" />
+    <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DTO\BookDTO.cs" />
+    <Compile Include="DTO\CategoryDTO.cs" />
     <Compile Include="Libs\Config.cs" />
     <Compile Include="ConnectDb.cs" />
     <Compile Include="DAOImpl\UserDAOImpl.cs" />
