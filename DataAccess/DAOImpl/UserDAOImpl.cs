@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace DataAccess.DAOImpl
 {
-    public class UserDAOImpl : UserDAO
+    public class UserDAOImpl : IUserDAO
     {
         public List<UserDTO> Users_GetList()
         {

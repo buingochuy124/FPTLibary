@@ -5,6 +5,11 @@
 
 @model List<DataAccess.DTO.BookDTO>
 
+
+<br />
+<a class="btn btn-primary" href="/Library/BookCreate" role="button"><i>Create New Book</i>  </a>
+
+
 <table class="table" id="myTable">
     <thead>
         <tr>
@@ -28,14 +33,14 @@
 
                     <td>@item.CategoryName</td>
                     <td>
-                        <a href="/Category/CategoryUpdate?CategoryId=@item.CategoryID"><i class="fa fa-eye">Update</i>  </a>
+                        <a href="/Book/BookUpdate?BookID=@item.BookID"><i class="fa fa-eye">Update</i>  </a>
 
                     </td>
                     <td>
-                        <a onclick="CategoryDelete('@item.CategoryID')"><i class="fa fa-trash">Delete</i> </a>
+                        <a onclick="BookDelete('@item.BookID')"><i class="fa fa-trash">Delete</i> </a>
                     </td>
                     <td>
-                        <a href="/Category/CategoryDetail?CategoryId=@item.CategoryID"><i class="fa fa-eye">Detail</i>  </a>
+                        <a href="/Book/BookDetail?BookID=@item.BookID"><i class="fa fa-eye">Detail</i>  </a>
                     </td>
 
                 </tr>

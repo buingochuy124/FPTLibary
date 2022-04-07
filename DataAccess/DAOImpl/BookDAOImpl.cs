@@ -3,13 +3,10 @@ using DataAccess.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.DAOImpl
 {
-    public class BookDAOImpl : BookDAO
+    public class BookDAOImpl : IBookDAO
     {
         public List<BookDTO> Books_GetList()
         {
@@ -39,6 +36,42 @@ namespace DataAccess.DAOImpl
 
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int Book_Create(string BookName, float Cost, int Quantity, int CategoryID, byte[] BookImage)
+        {
+            var result = 0;
+            try
+            {
+                var sqlconn = ConnectDB.GetSqlConnection();
+
+                SqlCommand cmd = new SqlCommand("SP_CreateBook", sqlconn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@_BookName", BookName);
+                cmd.Parameters.AddWithValue("@_Cost", Cost);
+                cmd.Parameters.AddWithValue("@_Quantity", Quantity);
+                cmd.Parameters.AddWithValue("@_CategoryID", CategoryID);
+                cmd.Parameters.AddWithValue("@_BookImage", BookImage);
+
+
+
+
+                cmd.Parameters.Add("@_ResponseCode", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+
+
+                cmd.ExecuteNonQuery();
+
+                result = cmd.Parameters["@_ResponseCode"].Value != null ? Convert.ToInt32(cmd.Parameters["@_ResponseCode"].Value) : 0;
+
+                return result;
+
+
+            }
+            catch (Exception ex)
             {
                 throw;
             }

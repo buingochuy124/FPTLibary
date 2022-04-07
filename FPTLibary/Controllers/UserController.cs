@@ -1,5 +1,7 @@
 ﻿using DataAccess.DTO;
+using FPTLibary.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace FPTLibary.Controllers
@@ -12,15 +14,15 @@ namespace FPTLibary.Controllers
             try
             {
                 var userSession = (UserDTO)Session[DataAccess.Libs.Config.SessionAccount];
-                if ( userSession.UserId <= 0)
+                if (userSession.UserId <= 0)
                 {
                     return RedirectToAction("login", "Unauthenticate");
                 }
                 else
-                {                
+                {
                     return View();
                 }
-           
+
 
             }
             catch (System.Exception)
@@ -36,20 +38,49 @@ namespace FPTLibary.Controllers
         {
             var result = new List<DataAccess.DTO.UserDTO>();
 
+            var userRole = new DataAccess.DTO.UserRoleDTO();
+
+            var userRoleName = "";
+
+            ReturnData returnData = new ReturnData();
             try
             {
-                var accountLogin = Session[DataAccess.Libs.Config.SessionAccount];
+                UserDTO accountLogin = (UserDTO)Session[DataAccess.Libs.Config.SessionAccount];
 
-                if(accountLogin == null)
+                if (accountLogin == null)
                 {
                     return RedirectToAction("Login", "Unauthenticate");
                 }
+                else
+                {
+                 
 
-                result = new DataAccess.DAOImpl.UserDAOImpl().Users_GetList();
+                    userRole = new DataAccess.DAOImpl.UserRoleDAOImpl()
+                        .UserRoles_GetList()
+                        .FirstOrDefault(u => u.UserID == accountLogin.UserId);
 
 
-                return View(result);
 
+                    userRoleName = new DataAccess.DAOImpl.RoleDAOImpl()
+                        .Roles_GetList()
+                        .FirstOrDefault(r => r.RoleID == userRole.RoleID)
+                        .RoleName;
+
+
+
+                    if (userRoleName == "Admin")
+                    {
+                        result = new DataAccess.DAOImpl.UserDAOImpl().Users_GetList();
+                        return View(result);
+                    }
+                    else
+                    {
+                        returnData.Description = "You dont have permission !!!";
+                        returnData.ResponseCode = -998;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    
+                }
 
             }
             catch (System.Exception)

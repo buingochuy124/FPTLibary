@@ -19,6 +19,7 @@ namespace FPTLibary.Controllers
 
             return View();
         }
+        
         public JsonResult LoginCheck(string UserAccount , string UserPassword)
         {
             var returnData = new ReturnData();

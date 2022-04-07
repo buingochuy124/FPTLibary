@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DAO
 {
-    public interface CategoryDAO
+    public interface ICategoryDAO
     {
         List<CategoryDTO> Categories_GetList();
     }

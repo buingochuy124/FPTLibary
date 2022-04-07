@@ -9,30 +9,29 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DAOImpl
 {
-    public class CategoryDAOImpl : ICategoryDAO
+    public class UserRoleDAOImpl : IUserRoleDAO
     {
-        public List<CategoryDTO> Categories_GetList()
+        public List<UserRoleDTO> UserRoles_GetList()
         {
-            var result = new List<CategoryDTO>();
+            var result = new List<UserRoleDTO>();
             try
             {
                 var sqlconn = ConnectDB.GetSqlConnection();
 
-                SqlCommand cmd = new SqlCommand("SP_GetListCategory", sqlconn);
+                SqlCommand cmd = new SqlCommand("SP_GetListUserRole", sqlconn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
 
                 var read = cmd.ExecuteReader();
                 while (read.Read())
                 {
-                    result.Add(new CategoryDTO
+                    result.Add(new UserRoleDTO
                     {
-                        CategoryID = int.Parse(read["CategoryID"].ToString()),
-                        CategoryName = read["CategoryName"].ToString(),
-                       
+                        UserRoleID = int.Parse(read["UserRoleID"].ToString()),
+                        RoleID = int.Parse(read["RoleID"].ToString()),
+                        UserID = int.Parse(read["UserID"].ToString())                 
                     });
                 }
-
                 return result;
 
             }

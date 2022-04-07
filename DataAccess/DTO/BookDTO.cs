@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccess.DTO
+﻿namespace DataAccess.DTO
 {
     public class BookDTO
     {
@@ -12,7 +6,7 @@ namespace DataAccess.DTO
         public string BookName { get; set; }
         public float Cost { get; set; }
         public int Quantity { get; set; }
-
+        public byte[] BookImage { get; set; }
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
     }

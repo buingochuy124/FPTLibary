@@ -1,0 +1,47 @@
+﻿@model List<DataAccess.DTO.BookDTO>
+@{
+    ViewBag.Title = "CategoryGetListBook";
+}
+
+<h2>CategoryGetListBook</h2>
+
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Book Name</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryName</td>
+                    <td>@item.BookName</td>
+                    <td>@item.Cost</td>
+                    <td>@item.Quantity</td>
+
+                    <td>
+                        <a href="/Book/BookUpdate?BookID=@item.BookID"><i class="fa fa-eye">Update</i>  </a>
+
+                    </td>
+                    <td>
+                        <a onclick="BookDelete('@item.BookID')"><i class="fa fa-trash">Delete</i> </a>
+                    </td>
+                    <td>
+                        <a href="/Book/BookDetail?BookID=@item.BookID"><i class="fa fa-eye">Detail</i>  </a>
+                    </td>
+
+                </tr>
+            }
+        }
+
+
+
+    </tbody>
+</table>

@@ -120,8 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LibraryController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\UnauthenticateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -178,10 +178,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Unauthenticate\Login.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\UserManagement.cshtml" />
     <Content Include="Views\Unauthenticate\Index.cshtml" />
-    <Content Include="Views\Library\Index.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\BookCreate.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\CategoryGetListBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

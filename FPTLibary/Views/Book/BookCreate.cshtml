@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "BookCreate";
+}
+@model List<DataAccess.DTO.CategoryDTO>
+
+
+<h2>Create new book</h2>
+
+
+
+
+<br />
+<form>
+    <label>Book Name</label>
+    <br />
+    <input type="text" id="bookName">
+    <br />
+
+
+    <label>Book Cost</label>
+    <br />
+    <input type="text" id="cost">
+    <br />
+    <br />
+
+
+    <label>Quantity</label>
+    <br />
+    <input type="text" id="quantity">
+    <br />
+    <br />
+    <label>Choose Category Name</label>
+    <br />
+
+    <select id="categoryName">
+        @{
+            foreach (var item in Model)
+            {
+                <option>@item.CategoryName</option>
+            }
+        }
+    </select>
+    <br />
+    <br />
+    <label>Choose book image:</label>
+
+    <input type="file"
+           id="bookImage" name="BookImage"
+           accept="image/png, image/jpeg">
+
+    <br />
+    <input type="button" value="submit" id="btn_submit">
+</form>
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#btn_submit").click(function () {
+            btn_submit();
+        });
+    });
+
+
+
+    function btn_submit() {
+        var bookName = $("#bookName").val();
+        var cost = $("#cost").val();
+            var quantity = $("#quantity").val();
+            var categoryName = $("#categoryName").val();
+            var bookImage = $("#bookImage").val();
+
+            if (bookName == null || bookName == "") {
+                alert("Book Name can't be null");
+
+                return;
+            }
+            if (cost == null || cost == "") {
+                alert("Cost can't be null");
+                return;
+            }
+
+            if (quantity == null || quantity == "") {
+                alert("Quatity can't be null");
+                return;
+            }
+        if (bookImage == null || bookImage == "") {
+            alert("Book image can't be null");
+            return;
+        }
+
+
+        var data = {
+
+            BookName: bookName,
+            Cost: cost,
+            Quantity: quantity,
+            CategoryName: categoryName,
+            BookImage: bookImage
+        };
+
+
+        $.ajax({
+            type: "GET", // GET / POST / DELETE
+            cache: false,
+            url: "/Library/BookInsert",
+            data: data,    // multiple data sent using ajax
+            success: function (data) {
+                var res = data.ResponseCode;
+                var des = data.Description;
+                alert(des);
+
+                setTimeout(function () {
+                    window.location.href = "/Book/Index";
+                }, 1000);
+
+            }
+        });
+    }
+   
+</script>
+
+
