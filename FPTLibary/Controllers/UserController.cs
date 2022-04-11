@@ -14,7 +14,7 @@ namespace FPTLibary.Controllers
             try
             {
                 var userSession = (UserDTO)Session[DataAccess.Libs.Config.SessionAccount];
-                if (userSession.UserId <= 0)
+                if (userSession == null)
                 {
                     return RedirectToAction("login", "Unauthenticate");
                 }
@@ -31,6 +31,12 @@ namespace FPTLibary.Controllers
                 throw;
             }
 
+        }
+        public ActionResult ListUserPartialView()
+        {
+            var result = new DataAccess.DAOImpl.UserDAOImpl().Users_GetList();
+            return PartialView(result)
+;
         }
 
 
@@ -53,7 +59,7 @@ namespace FPTLibary.Controllers
                 }
                 else
                 {
-                 
+
 
                     userRole = new DataAccess.DAOImpl.UserRoleDAOImpl()
                         .UserRoles_GetList()
@@ -79,7 +85,7 @@ namespace FPTLibary.Controllers
                         returnData.ResponseCode = -998;
                         return RedirectToAction("Index", "Home");
                     }
-                    
+
                 }
 
             }

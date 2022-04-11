@@ -1,71 +1,11 @@
-﻿@model List<DataAccess.DTO.UserDTO>
-@{
+﻿@{
     ViewBag.Title = "UserManagement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <h2>UserManagement</h2>
 
-<table class="table" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                UserAccount
-            </th>
-            <th>
-                UserPassword
-            </th>
-            <th>
-                UserFullName
-            </th>
 
-            <th>
-                UserAdress
-            </th>
-            <th>
-                UserPhoneNumber
-            </th>
-            <th>
-            </th>
-            <th>
-            </th>
-            <th>
-            </th>
-            <th>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
+@Html.Action("ListUserPartialView", "User")
 
-                <td>
-                    @item.UserAccount
-                </td>
-                <td>
-                    @item.UserPassword
-                </td>
-                <td>
-                    @item.UserFullName
-                </td>
-                <td>
-                    @item.UserAdress
-                </td>
-                <td>
-                    @item.UserPhoneNumber
-                </td>
-                <td>
-                    @ViewData["test"]
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-
-
-<script>
-    $(document).ready(function () {
-        $('#myTable').DataTable();
-    });
-</script>

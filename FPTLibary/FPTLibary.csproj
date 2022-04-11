@@ -137,15 +137,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\IMG\20590410.jpg" />
     <Content Include="Content\IMG\goddard-library-renew-a-book.jpg" />
-    <Content Include="Content\loginStyles.css" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Content\Libs\jquery.dataTables.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\IMG\bg-masthead.jpg" />
     <Content Include="Content\indexUnauthen.css" />
-    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -158,13 +155,12 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Libs\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\scripts.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -185,6 +181,7 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\CategoryGetListBook.cshtml" />
     <Content Include="Views\Book\BookLibraryPartialView.cshtml" />
+    <Content Include="Views\User\ListUserPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
