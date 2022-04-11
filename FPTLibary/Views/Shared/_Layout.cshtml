@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@*@model DataAccess.DTO.Function*@
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,9 +31,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
+                    @*ADD LI FUNCTION OF USER ROLE*@
+                    @*@{
+                        foreach (var item in Model)
+                        {
+                            <li>@Html.ActionLink("Login", "Login", "Unauthenticate")</li>
+                            DE T THEM VAO CHO
+                        }
+                    }*@
+
                     <li>@Html.ActionLink("Login", "Login", "Unauthenticate")</li>
-                    @*<li>@Html.ActionLink("CourseManagerment", "CourseManagerment", "Course")</li>
-                    <li>@Html.ActionLink("UserManagerment", "UserManagerment", "User")</li>*@
+
+                 
 
                 </ul>
             </div>

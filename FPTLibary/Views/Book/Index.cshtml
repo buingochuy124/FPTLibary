@@ -1,87 +1,25 @@
 ﻿
 @{
     ViewBag.Title = "Book Library";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+@model DataAccess.DTO.RoleDTO
+<br />
+
+@{
+    if (Model.RoleID == 1)
+    {
+        <a class="btn btn-primary" href="/Book/BookCreate" role="button"><i>Add Book</i>  </a>
+
+    }
 }
 
-@model List<DataAccess.DTO.BookDTO>
-
-
 <br />
-<a class="btn btn-primary" href="/Library/BookCreate" role="button"><i>Create New Book</i>  </a>
-
-
-<table class="table" id="myTable">
-    <thead>
-        <tr>
-            <th>Book Name</th>
-            <th>Cost</th>
-            <th>Quantity</th>
-            <th>Category</th>
-
-
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Count > 0)
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.BookName</td>
-                    <td>@item.Cost</td>
-                    <td>@item.Quantity</td>
-
-                    <td>@item.CategoryName</td>
-                    <td>
-                        <a href="/Book/BookUpdate?BookID=@item.BookID"><i class="fa fa-eye">Update</i>  </a>
-
-                    </td>
-                    <td>
-                        <a onclick="BookDelete('@item.BookID')"><i class="fa fa-trash">Delete</i> </a>
-                    </td>
-                    <td>
-                        <a href="/Book/BookDetail?BookID=@item.BookID"><i class="fa fa-eye">Detail</i>  </a>
-                    </td>
-
-                </tr>
-            }
-        }
-
-
-
-    </tbody>
-</table>
-
-
-<script>
-    $(document).ready(function () {
-        $('#myTable').DataTable();
-    });
-</script>
 
 
 
 
-<script type="text/javascript">
-    function AddToCart(item) {
-        var itemId = $(item).attr("itemid");
-        var formData = new FormData();
-        formData.append("ItemId", itemId);
-        $.ajax({
-            async: true,
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            data: formData,
-            url: '/Shopping/Index',
-            success: function (data) {
-                if (data.Success) {
-                    $("#cartItem").text("Cart(" + data.Counter + ")");
-                }
-            },
-            error: function () {
-                alert("There is some problem.");
-            }
-        });
-    }
-</script>
+@Html.Action("BookLibraryPartialView", "Book")
+

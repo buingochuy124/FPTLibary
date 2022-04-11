@@ -41,6 +41,7 @@
             }
         }
     </select>
+
     <br />
     <br />
     <label>Choose book image:</label>
@@ -70,28 +71,25 @@
     function btn_submit() {
         var bookName = $("#bookName").val();
         var cost = $("#cost").val();
-            var quantity = $("#quantity").val();
-            var categoryName = $("#categoryName").val();
-            var bookImage = $("#bookImage").val();
+        var quantity = $("#quantity").val();
+        var categoryName = $("#categoryName").val();
+        var bookImage = $("#bookImage").get(0).files;
 
-            if (bookName == null || bookName == "") {
-                alert("Book Name can't be null");
+        if (bookName == null || bookName == "") {
+            alert("Book Name can't be null");
 
-                return;
-            }
-            if (cost == null || cost == "") {
-                alert("Cost can't be null");
-                return;
-            }
-
-            if (quantity == null || quantity == "") {
-                alert("Quatity can't be null");
-                return;
-            }
-        if (bookImage == null || bookImage == "") {
-            alert("Book image can't be null");
             return;
         }
+        if (cost == null || cost == "") {
+            alert("Cost can't be null");
+            return;
+        }
+
+        if (quantity == null || quantity == "") {
+            alert("Quatity can't be null");
+            return;
+        }
+    
 
 
         var data = {
@@ -121,7 +119,7 @@
             }
         });
     }
-   
+
 </script>
 
 

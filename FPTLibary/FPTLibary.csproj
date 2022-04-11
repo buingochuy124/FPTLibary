@@ -184,6 +184,7 @@
     <Content Include="Views\Book\BookCreate.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\CategoryGetListBook.cshtml" />
+    <Content Include="Views\Book\BookLibraryPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
