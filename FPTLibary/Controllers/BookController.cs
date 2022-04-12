@@ -3,7 +3,6 @@ using FPTLibary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FPTLibary.Controllers
@@ -36,7 +35,7 @@ namespace FPTLibary.Controllers
 
                     foreach (var item in listRoleOfUser)
                     {
-                        
+
                         if (item.RoleID == 1)
                         {
                             result.RoleID = 1;
@@ -46,13 +45,14 @@ namespace FPTLibary.Controllers
                         }
                         else
                         {
+
                             result.RoleID = 2;
                             result.RoleName = new DataAccess.DAOImpl.RoleDAOImpl()
                                 .Roles_GetList().FirstOrDefault(r => r.RoleID == result.RoleID).RoleName;
 
                         }
                     }
-
+                    ViewData["UserName"] = userSession.UserFullName;
 
                     return View(result);
                 }
@@ -88,7 +88,7 @@ namespace FPTLibary.Controllers
             return View(result);
         }
 
-        public JsonResult BookInsert(string BookName, float Cost, int Quantity, string CategoryName, Byte[] BookImage)
+        public JsonResult BookInsert(string BookName, float Cost, int Quantity, string CategoryName)
         {
             ReturnData returnData = new ReturnData();
             var categoryID = 0;
@@ -97,19 +97,6 @@ namespace FPTLibary.Controllers
             try
             {
 
-                HttpPostedFileBase file = Request.Files["bookImage"];
-                if (file == null)
-                {
-                    returnData.ResponseCode = -111;
-                    returnData.Description = "File Image Null !!!";
-                    return Json(returnData, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    BookImage = new byte[file.ContentLength];
-                    file.InputStream.Read(BookImage, 0, file.ContentLength);
-                }
-
 
                 categoryID = new DataAccess.DAOImpl.CategoryDAOImpl()
                 .Categories_GetList()
@@ -117,7 +104,7 @@ namespace FPTLibary.Controllers
                 .CategoryID;
 
                 result = new DataAccess.DAOImpl.BookDAOImpl()
-                .Book_Create(BookName, Cost, Quantity, categoryID, BookImage);
+                .Book_Create(BookName, Cost, Quantity, categoryID);
 
                 if (result > 0)
                 {
@@ -139,7 +126,34 @@ namespace FPTLibary.Controllers
 
 
         }
+        public ActionResult BookDetail(int? BookID)
+        {
+           
+            try
+            {
+                var result = new DataAccess.DAOImpl
+                .BookDAOImpl()
+                .Books_GetList()
+                .FirstOrDefault(b=>b.BookID.Equals(BookID));
 
+
+                result.CategoryName = new DataAccess.DAOImpl
+                    .CategoryDAOImpl()
+                    .Categories_GetList()
+                    .FirstOrDefault(c => c.CategoryID == result.CategoryID)
+                    .CategoryName;
+
+
+                return View(result);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
 
     }
 }

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var userName = @ViewData["UserName"];
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,15 +33,18 @@
                 @Html.ActionLink("Home ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav ">
 
 
                     <li>@Html.ActionLink("Login", "Login", "Unauthenticate")</li>
 
-                 
+                    <li>@Html.ActionLink("Logout", "Logout", "Unauthenticate")</li>
+
+
 
                 </ul>
             </div>
+
         </div>
     </div>
     <div class="container body-content">

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "BookDetail";
+}
+
+<h2>BookDetail</h2>
+
+
+@model DataAccess.DTO.BookDTO
+
+
+<div class="card-columns">
+
+    <div class=card>
+        <h3 class="card-header">@Model.BookName</h3>
+        <div class="card-body" style="height: 400px;">
+            @Model.BookImage
+        </div>
+        <div class="card-footer">
+            <span class="text-muted">@(Model.Cost) VND</span>
+
+            <a class="btn btn-primary"
+               href="/UserInvent/AddBookToUserInvent?BookID=@Model.BookID"
+               role="button">
+                Buy
+            </a>
+
+        </div>
+    </div>
+</div>

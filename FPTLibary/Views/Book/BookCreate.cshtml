@@ -46,11 +46,11 @@
 
     <br />
     <br />
-    <label>Choose book image:</label>
+    @*<label>Choose book image:</label>
 
     <input type="file"
            id="bookImage" name="BookImage"
-           accept="image/png, image/jpeg">
+           accept="image/png, image/jpeg">*@
 
     <br />
     <input type="button" value="submit" id="btn_submit">
@@ -75,7 +75,10 @@
         var cost = $("#cost").val();
         var quantity = $("#quantity").val();
         var categoryName = $("#categoryName").val();
-        var bookImage = $("#bookImage").get(0).files;
+
+
+
+        //var bookImage = $("#bookImage").get(0).files;
 
         if (bookName == null || bookName == "") {
             alert("Book Name can't be null");

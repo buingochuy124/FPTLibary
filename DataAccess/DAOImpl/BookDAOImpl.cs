@@ -41,7 +41,7 @@ namespace DataAccess.DAOImpl
             }
         }
 
-        public int Book_Create(string BookName, float Cost, int Quantity, int CategoryID, byte[] BookImage)
+        public int Book_Create(string BookName, float Cost, int Quantity, int CategoryID)
         {
             var result = 0;
             try
@@ -55,7 +55,6 @@ namespace DataAccess.DAOImpl
                 cmd.Parameters.AddWithValue("@_Cost", Cost);
                 cmd.Parameters.AddWithValue("@_Quantity", Quantity);
                 cmd.Parameters.AddWithValue("@_CategoryID", CategoryID);
-                cmd.Parameters.AddWithValue("@_BookImage", BookImage);
 
 
 

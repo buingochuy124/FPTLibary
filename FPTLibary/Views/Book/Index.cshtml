@@ -3,16 +3,19 @@
     ViewBag.Title = "Book Library";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-
 }
 @model DataAccess.DTO.RoleDTO
 <br />
 
+@{ 
+    <h2> Well come @ViewData["UserName"] to our library  </h2>
+}
+
+
 @{
-    if (Model.RoleID == 1)
+if (Model.RoleID == 1)
     {
         <a class="btn btn-primary" href="/Book/BookCreate" role="button"><i>Add Book</i>  </a>
-
     }
 }
 

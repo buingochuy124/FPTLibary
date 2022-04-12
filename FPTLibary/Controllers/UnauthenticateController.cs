@@ -19,8 +19,15 @@ namespace FPTLibary.Controllers
 
             return View();
         }
-        
-        public JsonResult LoginCheck(string UserAccount , string UserPassword)
+
+        public ActionResult Logout()
+        {
+            Session.RemoveAll();
+            Session.Abandon();
+            return RedirectToAction("Login", "Unauthenticate");
+        }
+
+        public JsonResult LoginCheck(string UserAccount, string UserPassword)
         {
             var returnData = new ReturnData();
 
@@ -38,7 +45,7 @@ namespace FPTLibary.Controllers
                         .Users_GetList()
                         .FirstOrDefault(u => u.UserAccount == UserAccount);
 
-                    
+
 
                     return Json(returnData, JsonRequestBehavior.AllowGet);
                 }
@@ -48,7 +55,7 @@ namespace FPTLibary.Controllers
                     returnData.Description = "User Account not exist. Login Fail !!!";
                     return Json(returnData, JsonRequestBehavior.AllowGet);
                 }
-              
+
                 else
                 {
                     returnData.ResponseCode = -997;
@@ -65,6 +72,6 @@ namespace FPTLibary.Controllers
                 return Json(returnData, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
     }
 }
