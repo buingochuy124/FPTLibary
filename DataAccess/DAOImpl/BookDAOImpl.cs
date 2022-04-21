@@ -42,6 +42,42 @@ namespace DataAccess.DAOImpl
             }
         }
 
+        public List<BookDTO> Books_GetListByPage(int? PageNumber, int? NumberPerPage)
+        {
+            var result = new List<BookDTO>();
+            try
+            {
+                var sqlconn = ConnectDB.GetSqlConnection();
+
+                SqlCommand cmd = new SqlCommand("SP_GetBookPagination", sqlconn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@_PageNumber", PageNumber);
+                cmd.Parameters.AddWithValue("@_NumberPerPage", NumberPerPage);
+
+
+                var read = cmd.ExecuteReader();
+                while (read.Read())
+                {
+                    result.Add(new BookDTO
+                    {
+                        BookID = int.Parse(read["BookID"].ToString()),
+                        BookName = read["BookName"].ToString(),
+                        Cost = int.Parse(read["Cost"].ToString()),
+                        Quantity = int.Parse(read["Quantity"].ToString()),
+                        CategoryID = int.Parse(read["CategoryID"].ToString()),
+                        BookImage = read["BookURL"].ToString()
+                    });
+                }
+
+                return result;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public int Book_Create(string BookName, float Cost, int Quantity, int CategoryID)
         {
             var result = 0;

@@ -19,6 +19,8 @@ namespace FPTLibary.Controllers
                     return RedirectToAction("Login", "Unauthenticate");
                 }
 
+               
+
                 var userRoles = new DataAccess.DAOImpl.UserRoleDAOImpl()
                     .GetUserRoleByUserID(userAccount.UserId);
 
@@ -88,17 +90,33 @@ namespace FPTLibary.Controllers
                 throw;
             }
         }
-        public ActionResult AddBookToUserInvent(int? BookID)
+        public JsonResult AddBookToUserInvent(int? BookID)
         {
-            var result = new DataAccess.DAOImpl.BookDAOImpl()
-                .Book_GetDetail(BookID);
+            try
+            {
 
-            var bookCategory = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_GetList()
-                .FirstOrDefault(c => c.CategoryID == result.CategoryID).CategoryName;
+                var result = new DataAccess.DAOImpl.BookDAOImpl()
+              .Book_GetDetail(BookID);
 
-            result.CategoryName = bookCategory;
+                var returnData = new ReturnData();
 
-            return View(result);
+
+                var bookCategory = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_GetList()
+                    .FirstOrDefault(c => c.CategoryID == result.CategoryID).CategoryName;
+
+                result.CategoryName = bookCategory;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
+
+
+
+
+            return Json(returnData, JsonRequestBehavior.AllowGet);
         }
     }
 }

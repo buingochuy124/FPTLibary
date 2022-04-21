@@ -23,6 +23,7 @@ namespace FPTLibary.Controllers
                 }
                 else
                 {
+
                     var userRoles = new DataAccess.DAOImpl.UserRoleDAOImpl().UserRoles_GetList();
 
                     foreach (var item in userRoles)
@@ -65,19 +66,31 @@ namespace FPTLibary.Controllers
             }
 
         }
-        public ActionResult BookLibraryPartialView()
+        public ActionResult BookLibraryPartialView(int? PageNumber, int? NumberPerPage)
         {
-            var result = new DataAccess.DAOImpl.BookDAOImpl().Books_GetList();
+            if (PageNumber == null && NumberPerPage == null)
+            {
+                PageNumber = 1;
+                NumberPerPage = 5;
+            }
+            var result = new DataAccess.DAOImpl.BookDAOImpl().Books_GetListByPage(PageNumber, NumberPerPage);
+
+
+            ViewBag.CurrentPage = PageNumber;
+            ViewBag.NumberPerPage = NumberPerPage;
+            ViewBag.EndPage = (new DataAccess.DAOImpl.BookDAOImpl().Books_GetList().Count) / NumberPerPage +  1;
+
             foreach (var item in result)
             {
                 item.CategoryName = new DataAccess.DAOImpl.CategoryDAOImpl()
                     .Categories_GetList()
                     .FirstOrDefault(c => c.CategoryID == item.CategoryID)
                     .CategoryName;
-
             }
+
+
             return PartialView(result);
-        }
+            }
         public ActionResult BookCreate()
         {
             var result = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_GetList();
@@ -128,13 +141,13 @@ namespace FPTLibary.Controllers
         }
         public ActionResult BookDetail(int? BookID)
         {
-           
+
             try
             {
                 var result = new DataAccess.DAOImpl
                 .BookDAOImpl()
                 .Books_GetList()
-                .FirstOrDefault(b=>b.BookID.Equals(BookID));
+                .FirstOrDefault(b => b.BookID.Equals(BookID));
 
 
                 result.CategoryName = new DataAccess.DAOImpl
@@ -152,7 +165,7 @@ namespace FPTLibary.Controllers
 
                 throw;
             }
-            
+
         }
         public ActionResult BookUploadImage()
         {

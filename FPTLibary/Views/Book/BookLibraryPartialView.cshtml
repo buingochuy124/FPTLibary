@@ -2,7 +2,7 @@
 @model  List<DataAccess.DTO.BookDTO>
 
 
-    
+
 @if (Model != null && Model.Count > 0)
 {
     foreach (var item in Model)
@@ -14,7 +14,7 @@
 
                 <div class="col-md-6 col-lg-3 col-xl-3">
                     <div>
-                        <img href="https://imgbb.com/" src="@item.BookImage" alt="Generic placeholder image" width="300" class="ml-lg-2 order-1 order-lg-2">
+                        <img href="https://imgbb.com/" src="@item.BookImage" alt="Generic placeholder image" width="250" class="ml-lg-2 order-1 order-lg-2">
                     </div>
 
                 </div>
@@ -30,7 +30,7 @@
                                 <a class="btn btn-primary"
                                    href="/Book/BookDetail?BookID=@item.BookID"
                                    role="button">
-                                     Detail
+                                    Detail
                                 </a>
                             </h4>
                         </div>
@@ -41,4 +41,31 @@
     }
 
 }
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=1&NumberPerPage=@ViewBag.NumberPerPage">First</a></li>
+
+            @{
+                if (ViewBag.CurrentPage != 1)
+                {
+                    <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@(ViewBag.CurrentPage-1)&NumberPerPage=@ViewBag.NumberPerPage">@(ViewBag.CurrentPage - 1)</a></li>
+
+                }
+            }
+            <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@ViewBag.CurrentPage&NumberPerPage=@ViewBag.NumberPerPage">@ViewBag.CurrentPage</a></li>
+
+            @{
+                if (ViewBag.CurrentPage < @ViewBag.EndPage)
+                {
+                    <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@(ViewBag.CurrentPage+1)&NumberPerPage=@ViewBag.NumberPerPage">@(ViewBag.CurrentPage + 1)</a></li>
+                }
+            }
+            <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@ViewBag.EndPage&NumberPerPage=@ViewBag.NumberPerPage">End</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+
 

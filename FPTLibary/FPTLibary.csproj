@@ -190,6 +190,7 @@
     <Content Include="Views\UserInvent\UserInventPartialView.cshtml" />
     <Content Include="Views\Unauthenticate\Register.cshtml" />
     <Content Include="Views\Home\PopupPartial.cshtml" />
+    <Content Include="Views\UserInvent\AddBookToUserInvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
