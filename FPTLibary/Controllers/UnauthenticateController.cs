@@ -73,5 +73,43 @@ namespace FPTLibary.Controllers
             }
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+        public JsonResult RegisterCheck(string UserAccount, string UserPassword, string UserFullName, string UserAddress, string UserPhoneNumber)
+        {
+            var returnData = new ReturnData();
+            var result = new DataAccess.DAOImpl.UserDAOImpl().User_Register(UserAccount, UserPassword, UserFullName, UserAddress, UserPhoneNumber);
+            try
+            {
+                if(result == -1)
+                {
+                    returnData.ResponseCode = -999;
+                    returnData.Description = "UserAccount already exist !! ";
+                    return Json(returnData, JsonRequestBehavior.AllowGet);
+                }
+                else if( result > 0)
+                {
+                    returnData.ResponseCode = 1;
+                    returnData.Description = "Register Successfully!!!";
+                    var userID = new DataAccess.DAOImpl.UserDAOImpl().User_GetUserIDByUserAccount(UserAccount);
+                    var userGetRole = new DataAccess.DAOImpl.UserRoleDAOImpl().UserGetDefaultRole(userID);
+                    var login = new DataAccess.DAOImpl.UserDAOImpl().User_Login(UserAccount, UserPassword);
+                    return Json(returnData, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    returnData.ResponseCode = 1;
+                    returnData.Description = "System bussy please F5!!!";
+                    return Json(returnData, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

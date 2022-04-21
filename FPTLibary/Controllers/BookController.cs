@@ -154,6 +154,9 @@ namespace FPTLibary.Controllers
             }
             
         }
-
+        public ActionResult BookUploadImage()
+        {
+            return View();
+        }
     }
 }

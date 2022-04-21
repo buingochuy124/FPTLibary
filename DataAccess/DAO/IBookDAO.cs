@@ -9,5 +9,6 @@ namespace DataAccess.DAO
 
         int Book_Create(string BookName, float Cost, int Quantity, int CategoryID);
 
+        BookDTO Book_GetDetail(int? BookID);
     }
 }

@@ -6,8 +6,10 @@
         public string BookName { get; set; }
         public float Cost { get; set; }
         public int Quantity { get; set; }
-        public string BookImage { get; set; }
+ 
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
+
+        public string BookImage { get; set; }
     }
 }

@@ -1,0 +1,33 @@
+﻿
+@model List<DataAccess.DTO.BookDTO>
+
+
+<div class="card-columns">
+
+    <h2>Welcome to </h2>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class=card>
+                <h3 class="card-header">@item.BookName</h3>
+                <div class="card-body" style="height: 150px;">
+                    @item.BookImage
+                </div>
+                <div class="card-footer">
+                    <span class="text-muted">@(item.Cost) VND</span>
+
+                    <a class="btn btn-primary"
+                       href="/Book/BookDetail?BookID=@item.BookID"
+                       role="button">
+                        Detail
+                    </a>
+
+                </div>
+            </div>
+        }
+    }
+
+</div>
+

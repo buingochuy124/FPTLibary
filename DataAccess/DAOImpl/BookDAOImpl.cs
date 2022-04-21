@@ -29,6 +29,7 @@ namespace DataAccess.DAOImpl
                         Cost = int.Parse(read["Cost"].ToString()),
                         Quantity = int.Parse(read["Quantity"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
+                        BookImage = read["BookURL"].ToString()
                     });
                 }
 
@@ -71,6 +72,39 @@ namespace DataAccess.DAOImpl
 
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public BookDTO Book_GetDetail(int? BookID)
+        {
+            var result = new BookDTO();
+            try
+            {
+                var sqlconn = ConnectDB.GetSqlConnection();
+
+                SqlCommand cmd = new SqlCommand("SP_GetBookDetail", sqlconn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                var read = cmd.ExecuteReader();
+                while (read.Read())
+                {
+                    result = new BookDTO
+                    {
+                        BookID = int.Parse(read["BookID"].ToString()),
+                        BookName = read["BookName"].ToString(),
+                        Cost = int.Parse(read["Cost"].ToString()),
+                        Quantity = int.Parse(read["Quantity"].ToString()),
+                        CategoryID = int.Parse(read["CategoryID"].ToString()),
+                    };
+                }
+
+                return result;
+
+            }
+            catch (Exception)
             {
                 throw;
             }

@@ -122,8 +122,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UnauthenticateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserInventController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -135,8 +137,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\IMG\20590410.jpg" />
     <Content Include="Content\IMG\goddard-library-renew-a-book.jpg" />
+    <Content Include="Content\Libs\cart.css" />
     <Content Include="Content\Libs\jquery.dataTables.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.css.map" />
@@ -183,6 +185,11 @@
     <Content Include="Views\Book\BookLibraryPartialView.cshtml" />
     <Content Include="Views\User\ListUserPartialView.cshtml" />
     <Content Include="Views\Book\BookDetail.cshtml" />
+    <Content Include="Views\UserInvent\Index.cshtml" />
+    <Content Include="Views\UserInvent\ListUsersPartialView.cshtml" />
+    <Content Include="Views\UserInvent\UserInventPartialView.cshtml" />
+    <Content Include="Views\Unauthenticate\Register.cshtml" />
+    <Content Include="Views\Home\PopupPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -45,14 +45,17 @@
     <Compile Include="DAOImpl\BookDAOImpl.cs" />
     <Compile Include="DAOImpl\CategoryDAOImpl.cs" />
     <Compile Include="DAOImpl\RoleDAOImpl.cs" />
+    <Compile Include="DAOImpl\UserInventDAOImpl.cs" />
     <Compile Include="DAOImpl\UserRoleDAOImpl.cs" />
     <Compile Include="DAO\IBookDAO.cs" />
     <Compile Include="DAO\ICategoryDAO.cs" />
     <Compile Include="DAO\IRoleDAO.cs" />
+    <Compile Include="DAO\IUserInventDAO.cs" />
     <Compile Include="DAO\IUserRoleDAO.cs" />
     <Compile Include="DTO\BookDTO.cs" />
     <Compile Include="DTO\CategoryDTO.cs" />
     <Compile Include="DTO\RoleDTO.cs" />
+    <Compile Include="DTO\UserInventDTO.cs" />
     <Compile Include="DTO\UserRoleDTO.cs" />
     <Compile Include="Libs\Config.cs" />
     <Compile Include="ConnectDb.cs" />

@@ -1,31 +1,44 @@
 ﻿
-@model List<DataAccess.DTO.BookDTO>
+@model  List<DataAccess.DTO.BookDTO>
 
 
-<div class="card-columns">
-    @if (Model != null && Model.Count > 0)
+    
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
     {
-        foreach (var item in Model)
-        {
-            <div class=card>
-                <h3 class="card-header">@item.BookName</h3>
-                <div class="card-body" style="height: 150px;">
-                    @item.BookImage
+
+        <li class="list-group-item">
+            <!-- Single Product -->
+            <div class="row">
+
+                <div class="col-md-6 col-lg-3 col-xl-3">
+                    <div>
+                        <img href="https://imgbb.com/" src="@item.BookImage" alt="Generic placeholder image" width="300" class="ml-lg-2 order-1 order-lg-2">
+                    </div>
+
                 </div>
-                <div class="card-footer">
-                    <span class="text-muted">@(item.Cost) VND</span>
+                <div class="col-md-7 col-lg-4 col-xl-3">
+                    <div class="single-product">
 
-                    <a class="btn btn-primary"
-                       href="/Book/BookDetail?BookID=@item.BookID"
-                       role="button">
-                        Detail
-                    </a>
-
+                        <div class="part-2">
+                            <h3>@item.BookName</h3>
+                            <h4>@item.Cost VND</h4>
+                            <h4>@item.CategoryName</h4>
+                            <h4>@item.Quantity</h4>
+                            <h4>
+                                <a class="btn btn-primary"
+                                   href="/Book/BookDetail?BookID=@item.BookID"
+                                   role="button">
+                                     Detail
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
                 </div>
             </div>
-        }
+        </li>
     }
 
-</div>
-
+}
 

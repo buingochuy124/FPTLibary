@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "BookDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <h2>BookDetail</h2>
@@ -14,7 +16,7 @@
     <div class=card>
         <h3 class="card-header">@Model.BookName</h3>
         <div class="card-body" style="height: 400px;">
-            @Model.BookImage
+            <img href="https://imgbb.com/" src="@Model.BookImage" alt="Generic placeholder image" width="350" class="ml-lg-5 order-1 order-lg-2">
         </div>
         <div class="card-footer">
             <span class="text-muted">@(Model.Cost) VND</span>
@@ -28,3 +30,4 @@
         </div>
     </div>
 </div>
+
