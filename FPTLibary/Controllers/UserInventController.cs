@@ -105,6 +105,8 @@ namespace FPTLibary.Controllers
                     .FirstOrDefault(c => c.CategoryID == result.CategoryID).CategoryName;
 
                 result.CategoryName = bookCategory;
+                return Json(returnData, JsonRequestBehavior.AllowGet);
+
             }
             catch (Exception)
             {
@@ -116,7 +118,6 @@ namespace FPTLibary.Controllers
 
 
 
-            return Json(returnData, JsonRequestBehavior.AllowGet);
         }
     }
 }
