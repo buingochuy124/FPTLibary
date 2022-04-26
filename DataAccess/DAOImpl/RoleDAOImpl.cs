@@ -17,10 +17,8 @@ namespace DataAccess.DAOImpl
             try
             {
                 var sqlconn = ConnectDB.GetSqlConnection();
-
                 SqlCommand cmd = new SqlCommand("SP_GetListRole", sqlconn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
 
                 var read = cmd.ExecuteReader();
                 while (read.Read())

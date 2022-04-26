@@ -15,14 +15,18 @@
 
     <div class=card>
         <h3 class="card-header">@Model.BookName</h3>
-        <div class="card-body" style="height: 400px;">
-            <img href="https://imgbb.com/" src="@Model.BookImage" alt="Generic placeholder image" width="350" class="ml-lg-5 order-1 order-lg-2">
+        <div class="card-body" style="height: 200px;">
+            <img href="https://imgbb.com/" src="@Model.BookImageURL" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
         </div>
         <div class="card-footer">
-            <span class="text-muted">@(Model.Cost) VND</span>
+            <span class="text-muted">Title: @(Model.BookName) </span><br />
+            <span class="text-muted">Cost: @(Model.Cost) VND</span><br />
+            <span class="text-muted">Category: @(Model.CategoryName) </span><br />
+            <span class="text-muted">Quantity@(Model.Quantity) </span><br />
+            <span class="text-muted">Seller: @(Model.SellerName) </span><br />
+            <br />
 
-            <a class="btn btn-primary"
-               href="/UserInvent/AddBookToUserInvent?BookID=@Model.BookID"
+            <a id="btn_addBookToInvent"  class="btn btn-primary"
                role="button">
                 Order
             </a>
@@ -31,3 +35,36 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $("#btn_addBookToInvent").click(function () {
+
+       
+            var data = {
+                BookID: @Model.BookID
+            };
+
+            $.ajax({
+                type: "GET", // GET / POST / DELETE
+                cache: false,
+                url: "/UserInvent/AddBookToUserInvent",
+                data: data,    
+                success: function (data) {
+                    var res = data.ResponseCode;
+                    var des = data.Description;
+                    alert(des);
+
+                    setTimeout(function () {
+                        window.location.href = "/UserInvent/Index";
+                    }, 1000);
+
+                }
+            });
+
+
+        });
+
+        
+    });
+
+</script>

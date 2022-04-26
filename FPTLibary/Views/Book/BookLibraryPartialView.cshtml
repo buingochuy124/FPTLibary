@@ -1,71 +1,143 @@
 ﻿
-@model  List<DataAccess.DTO.BookDTO>
+@model List<DataAccess.DTO.BookDTO>
 
 
+@{
 
-@if (Model != null && Model.Count > 0)
-{
-    foreach (var item in Model)
+    var a = 3;
+    var n = Model.Count;
+    var nRow = (int)Math.Ceiling((double)Model.Count / a);
+
+}
+
+
+<div class="container">
+    @for (int i = 0; i < nRow; i++)
     {
-
-        <li class="list-group-item">
-            <!-- Single Product -->
-            <div class="row">
-
-                <div class="col-md-6 col-lg-3 col-xl-3">
-                    <div>
-                        <img href="https://imgbb.com/" src="@item.BookImage" alt="Generic placeholder image" width="250" class="ml-lg-2 order-1 order-lg-2">
+        <div class="row" style="width:auto">
+            @{
+                var target = (i + 1) * a < n ? (i + 1) * a : n;
+            }
+            @for (int j = (i * a); j < target; j++)
+            {
+                <div class="list-group-item col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <img href="https://imgbb.com/" src="@Model[j].BookImageURL" class="card-img-top" width="150">
+                        <div class="card-body">
+                            <h5 class="card-title">Title: @Model[j].BookName</h5>
+                            <p class="card-text">Cost: @Model[j].Cost VND</p>
+                            <p class="card-text">Category: @Model[j].CategoryName</p>
+                            <p class="card-text">Quantity: @Model[j].Quantity</p>
+                            <a class="btn btn-primary"
+                               href="/Book/BookDetail?BookID=@Model[i].BookID"
+                               role="button">
+                                Detail
+                            </a>
+                        </div>
                     </div>
-
                 </div>
-                <div class="col-md-7 col-lg-4 col-xl-3">
+
+            }
+
+        </div>
+    }
+
+
+</div>
+
+@*@{
+        for (int i = 0; i < Model.Count; i++)
+        {
+            <li class="list-group-item col-lg-4">
+
+                <div class="col-md-2 col-lg-4 col-xl-4">
+                    <div>
+                        <img href="https://imgbb.com/" src="@Model[i].BookImage">
+                    </div>
+                </div>
+                <div class="col-md-9 col-lg-7 col-xl-4">
                     <div class="single-product">
 
-                        <div class="part-2">
+                        <div>
+                            <h3>@Model[i].BookName</h3>
+                            <h5>@Model[i].Cost VND</h5>
+                            <h5>@Model[i].CategoryName</h5>
+                            <h5>@Model[i].Quantity</h5>
+                            <h5>@Model[i].SellerName</h5>
+                            <h5>
+
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    }*@
+
+
+@*@if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <ul class="list-group-item col-lg-3">
+
+                <div class="col-md-4 col-lg-6 col-xl-3">
+                    <div>
+                        <img href="https://imgbb.com/" src="@item.BookImage" width="200">
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-8 col-xl-6">
+                    <div class="single-product">
+
+                        <div>
                             <h3>@item.BookName</h3>
-                            <h4>@item.Cost VND</h4>
-                            <h4>@item.CategoryName</h4>
-                            <h4>@item.Quantity</h4>
-                            <h4>
+                            <h5>@item.Cost VND</h5>
+                            <h5>@item.CategoryName</h5>
+                            <h5>@item.Quantity</h5>
+                            <h5>@item.SellerName</h5>
+                            <h5>
                                 <a class="btn btn-primary"
                                    href="/Book/BookDetail?BookID=@item.BookID"
                                    role="button">
                                     Detail
                                 </a>
-                            </h4>
+                            </h5>
                         </div>
                     </div>
                 </div>
-            </div>
-        </li>
-    }
 
-}
-<div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=1&NumberPerPage=@ViewBag.NumberPerPage">First</a></li>
 
-            @{
-                if (ViewBag.CurrentPage != 1)
-                {
-                    <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@(ViewBag.CurrentPage-1)&NumberPerPage=@ViewBag.NumberPerPage">@(ViewBag.CurrentPage - 1)</a></li>
+            </ul>
 
+        }
+
+    }*@
+
+
+
+<section class="row">
+    <div style="display:flex;text-align:center;justify-content:center">
+        <nav aria-label="Page navigation example ">
+            <ul class="pagination">
+                <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=1&NumberPerPage=@ViewBag.NumberPerPage">First</a></li>
+
+                @{
+                    if (ViewBag.CurrentPage != 1)
+                    {
+                        <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@(ViewBag.CurrentPage-1)&NumberPerPage=@ViewBag.NumberPerPage">@(ViewBag.CurrentPage - 1)</a></li>
+
+                    }
                 }
-            }
-            <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@ViewBag.CurrentPage&NumberPerPage=@ViewBag.NumberPerPage">@ViewBag.CurrentPage</a></li>
+                <li value="submit" id="btn_submit" class="page-item active"><a class="page-link" href="/Book/Index?PageNumber=@ViewBag.CurrentPage&NumberPerPage=@ViewBag.NumberPerPage">@ViewBag.CurrentPage</a></li>
 
-            @{
-                if (ViewBag.CurrentPage < @ViewBag.EndPage)
-                {
-                    <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@(ViewBag.CurrentPage+1)&NumberPerPage=@ViewBag.NumberPerPage">@(ViewBag.CurrentPage + 1)</a></li>
+                @{
+                    if (ViewBag.CurrentPage < (@ViewBag.EndPage - 1))
+                    {
+                        <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@(ViewBag.CurrentPage+1)&NumberPerPage=@ViewBag.NumberPerPage">@(ViewBag.CurrentPage + 1)</a></li>
+                    }
                 }
-            }
-            <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@ViewBag.EndPage&NumberPerPage=@ViewBag.NumberPerPage">End</a></li>
-        </ul>
-    </nav>
-</div>
-
-
-
-
+                <li value="submit" id="btn_submit" class="page-item"><a class="page-link" href="/Book/Index?PageNumber=@(ViewBag.EndPage-1)&NumberPerPage=@ViewBag.NumberPerPage">End</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>

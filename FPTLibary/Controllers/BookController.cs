@@ -50,7 +50,6 @@ namespace FPTLibary.Controllers
                             result.RoleID = 2;
                             result.RoleName = new DataAccess.DAOImpl.RoleDAOImpl()
                                 .Roles_GetList().FirstOrDefault(r => r.RoleID == result.RoleID).RoleName;
-
                         }
                     }
                     ViewData["UserName"] = userSession.UserFullName;
@@ -68,36 +67,41 @@ namespace FPTLibary.Controllers
         }
         public ActionResult BookLibraryPartialView(int? PageNumber, int? NumberPerPage)
         {
-            if (PageNumber == null && NumberPerPage == null)
+
+
+            try
             {
-                PageNumber = 1;
-                NumberPerPage = 5;
+                if (PageNumber == null && NumberPerPage == null)
+                {
+                    PageNumber = 1;
+                    NumberPerPage = 6;
+                }
+                var result = new DataAccess.DAOImpl.BookDAOImpl().Books_GetListByPage(PageNumber, NumberPerPage);
+                ViewBag.CurrentPage = PageNumber;
+                ViewBag.NumberPerPage = NumberPerPage;
+                ViewBag.EndPage = (new DataAccess.DAOImpl.BookDAOImpl().Books_GetList().Count) / NumberPerPage + 1;
+                if (PageNumber > ViewBag.EndPage)
+                {
+                    return HttpNotFound();
+                }
+                foreach (var item in result)
+                {
+                    item.CategoryName = new DataAccess.DAOImpl.CategoryDAOImpl()
+                        .Categories_GetList()
+                        .FirstOrDefault(c => c.CategoryID == item.CategoryID)
+                        .CategoryName;
+                }
+                return PartialView(result);
             }
-            var result = new DataAccess.DAOImpl.BookDAOImpl().Books_GetListByPage(PageNumber, NumberPerPage);
-
-
-            ViewBag.CurrentPage = PageNumber;
-            ViewBag.NumberPerPage = NumberPerPage;
-            ViewBag.EndPage = (new DataAccess.DAOImpl.BookDAOImpl().Books_GetList().Count) / NumberPerPage +  1;
-
-            foreach (var item in result)
+            catch (Exception)
             {
-                item.CategoryName = new DataAccess.DAOImpl.CategoryDAOImpl()
-                    .Categories_GetList()
-                    .FirstOrDefault(c => c.CategoryID == item.CategoryID)
-                    .CategoryName;
+                throw;
             }
 
-
-            return PartialView(result);
-            }
+        }
         public ActionResult BookCreate()
         {
             var result = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_GetList();
-
-
-
-
             return View(result);
         }
 
@@ -106,7 +110,6 @@ namespace FPTLibary.Controllers
             ReturnData returnData = new ReturnData();
             var categoryID = 0;
             var result = 0;
-
             try
             {
 
@@ -155,6 +158,10 @@ namespace FPTLibary.Controllers
                     .Categories_GetList()
                     .FirstOrDefault(c => c.CategoryID == result.CategoryID)
                     .CategoryName;
+                result.SellerName = new DataAccess.DAOImpl.SellerDAOImpl()
+                    .Sellers_GetList()
+                    .FirstOrDefault(s => s.SellerID == result.SellerID)
+                    .SellerName;
 
 
                 return View(result);
@@ -167,9 +174,6 @@ namespace FPTLibary.Controllers
             }
 
         }
-        public ActionResult BookUploadImage()
-        {
-            return View();
-        }
+
     }
 }

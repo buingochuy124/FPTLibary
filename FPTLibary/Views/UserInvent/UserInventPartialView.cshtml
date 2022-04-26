@@ -1,6 +1,9 @@
 ﻿
 @model List<DataAccess.DTO.BookDTO>
 
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <div class="card-columns">
 
@@ -10,10 +13,10 @@
     {
         foreach (var item in Model)
         {
-            <div class=card>
+            <div class="card">
                 <h3 class="card-header">@item.BookName</h3>
                 <div class="card-body" style="height: 150px;">
-                    @item.BookImage
+                    <img href="https://imgbb.com/" src="@item.BookImageURL" class="card-img-top" width="150">
                 </div>
                 <div class="card-footer">
                     <span class="text-muted">@(item.Cost) VND</span>
@@ -23,7 +26,6 @@
                        role="button">
                         Detail
                     </a>
-
                 </div>
             </div>
         }

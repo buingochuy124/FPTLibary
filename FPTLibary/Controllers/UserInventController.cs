@@ -19,16 +19,16 @@ namespace FPTLibary.Controllers
                     return RedirectToAction("Login", "Unauthenticate");
                 }
 
-               
+
 
                 var userRoles = new DataAccess.DAOImpl.UserRoleDAOImpl()
                     .GetUserRoleByUserID(userAccount.UserId);
 
                 foreach (var item in userRoles)
                 {
-                    if (item.RoleID == 2)
+                    if (item.RoleID == 1)
                     {
-                        ViewBag.userRoleId = 2;
+                        ViewBag.userRoleId = 1;
                         return View();
                     }
 
@@ -37,7 +37,6 @@ namespace FPTLibary.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -90,34 +89,42 @@ namespace FPTLibary.Controllers
                 throw;
             }
         }
-        public JsonResult AddBookToUserInvent(int? BookID)
+        public JsonResult AddBookToUserInvent(int BookID)
         {
+            var returnData = new ReturnData();
+            var userAccount = (UserDTO)Session[DataAccess.Libs.Config.SessionAccount];
+            var userID = userAccount.UserId;
             try
             {
+                var result = new DataAccess.DAOImpl.UserInventDAOImpl()
+                    .UserInvent_AddBook(BookID, userID);
 
-                var result = new DataAccess.DAOImpl.BookDAOImpl()
-              .Book_GetDetail(BookID);
+                if (result > 0)
+                {
+                    returnData.ResponseCode = 99;
+                    returnData.Description = "Add to invent successfully !!!";
+                    return Json(returnData, JsonRequestBehavior.AllowGet);
 
-                var returnData = new ReturnData();
-
-
-                var bookCategory = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_GetList()
-                    .FirstOrDefault(c => c.CategoryID == result.CategoryID).CategoryName;
-
-                result.CategoryName = bookCategory;
-                return Json(returnData, JsonRequestBehavior.AllowGet);
+                }
+                else if(result == 0)
+                {
+                    returnData.ResponseCode = 0;
+                    returnData.Description = "You already have this book in your inventory !!!";
+                    return Json(returnData, JsonRequestBehavior.AllowGet);
+                    //return 
+                }
+                else
+                {
+                    returnData.ResponseCode = 0;
+                    returnData.Description = "Some thing went wrong please try again !!!";
+                    return Json(returnData, JsonRequestBehavior.AllowGet);
+                }
 
             }
             catch (Exception)
             {
-
                 throw;
             }
-          
-
-
-
-
         }
     }
 }

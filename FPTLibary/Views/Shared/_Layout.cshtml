@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     var userName = @ViewData["UserName"];
 }
 
@@ -36,12 +36,11 @@
                 <ul class="nav navbar-nav ">
 
 
-                    <li>@Html.ActionLink("Inventory", "Inventory", "UserInvent")</li>
+                    <li>@Html.ActionLink("Inventory", "Index", "UserInvent")</li>
 
                     <li>@Html.ActionLink("Login", "Login", "Unauthenticate")</li>
 
                     <li>@Html.ActionLink("Logout", "Logout", "Unauthenticate")</li>
-
 
                     @Html.Action("PopupPartial", "Home");
 

@@ -8,5 +8,7 @@ namespace DataAccess.DAO
         List<UserInventDTO> UserInvents_GetList();
 
         List<UserInventDTO> UserInvent_GetDetail(int UserID);
+
+        int UserInvent_AddBook(int BookID, int UserID);
     }
 }

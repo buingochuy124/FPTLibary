@@ -29,7 +29,8 @@ namespace DataAccess.DAOImpl
                         Cost = int.Parse(read["Cost"].ToString()),
                         Quantity = int.Parse(read["Quantity"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
-                        BookImage = read["BookURL"].ToString()
+                        BookImageURL = read["BookURL"].ToString(),
+                        SellerID = int.Parse(read["SellerID"].ToString())
                     });
                 }
 
@@ -65,7 +66,9 @@ namespace DataAccess.DAOImpl
                         Cost = int.Parse(read["Cost"].ToString()),
                         Quantity = int.Parse(read["Quantity"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
-                        BookImage = read["BookURL"].ToString()
+                        BookImageURL = read["BookURL"].ToString(),
+                        SellerID =  int.Parse(read["SellerID"].ToString()),
+
                     });
                 }
 
@@ -92,9 +95,6 @@ namespace DataAccess.DAOImpl
                 cmd.Parameters.AddWithValue("@_Cost", Cost);
                 cmd.Parameters.AddWithValue("@_Quantity", Quantity);
                 cmd.Parameters.AddWithValue("@_CategoryID", CategoryID);
-
-
-
 
                 cmd.Parameters.Add("@_ResponseCode", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
 
@@ -123,6 +123,8 @@ namespace DataAccess.DAOImpl
                 SqlCommand cmd = new SqlCommand("SP_GetBookDetail", sqlconn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@_BookID", BookID);
+
 
                 var read = cmd.ExecuteReader();
                 while (read.Read())
@@ -134,6 +136,8 @@ namespace DataAccess.DAOImpl
                         Cost = int.Parse(read["Cost"].ToString()),
                         Quantity = int.Parse(read["Quantity"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
+                        SellerID = int.Parse(read["SellerID"].ToString())
+
                     };
                 }
 

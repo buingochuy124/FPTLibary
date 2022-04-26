@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "CreateSeller";
+}
+@model DataAccess.DTO.SellerDTO
+
+<h2>Create Seller</h2>
+
+
+<br />
+<form>
+    <label>Seller Name</label>
+    <br />
+    <input type="text" id="sellerName">
+    <br />
+
+
+    <label>Date Time</label>
+    <br />
+    <input type="text" id="dateTime" disabled value="@Model.SaleDate">
+    <br />
+    <br />
+
+
+    <br />
+    <input type="button" value="submit" id="btn_submit">
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        $("#btn_submit").click(function () {
+            btn_submit();
+        });
+    });
+
+
+
+    function btn_submit() {
+        var SellerName = $("#sellerName").val();
+        var dateTime = $("#dateTime").val();
+
+
+        if (SellerName == null || SellerName == "") {
+            alert("Seller Name can't be null");
+
+            return;
+        }
+      
+        var data = {
+
+            SellerName: SellerName,
+            DateTime: dateTime
+
+        };
+
+
+        $.ajax({
+            type: "GET", // GET / POST / DELETE
+            cache: false,
+            url: "/Seller/InsertSeller",
+            data: data,    // multiple data sent using ajax
+            success: function (data) {
+                var res = data.ResponseCode;
+                var des = data.Description;
+                alert(des);
+            }
+        });
+    }
+</script>
+
+
