@@ -39,7 +39,7 @@
     $(document).ready(function () {
         $("#btn_addBookToInvent").click(function () {
 
-       
+
             var data = {
                 BookID: @Model.BookID
             };
@@ -48,14 +48,14 @@
                 type: "GET", // GET / POST / DELETE
                 cache: false,
                 url: "/UserInvent/AddBookToUserInvent",
-                data: data,    
+                data: data,
                 success: function (data) {
                     var res = data.ResponseCode;
                     var des = data.Description;
                     alert(des);
 
                     setTimeout(function () {
-                        window.location.href = "/UserInvent/Index";
+                        window.location.href = "/UserInvent/UserInventPartialView";
                     }, 1000);
 
                 }
@@ -64,7 +64,7 @@
 
         });
 
-        
+
     });
 
 </script>

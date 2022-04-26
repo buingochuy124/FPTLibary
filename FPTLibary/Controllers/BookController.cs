@@ -144,7 +144,8 @@ namespace FPTLibary.Controllers
         }
         public ActionResult BookDetail(int? BookID)
         {
-
+            var userSession = (UserDTO)Session[DataAccess.Libs.Config.SessionAccount];
+            ViewBag.userID = userSession.UserId;
             try
             {
                 var result = new DataAccess.DAOImpl

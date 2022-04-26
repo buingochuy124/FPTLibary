@@ -1,0 +1,46 @@
+﻿@model List<DataAccess.DTO.CategoryDTO>
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                CategoryID
+            </th>
+            <th>
+                CategoryName
+            </th>
+            <th>
+                Edit
+            </th>
+
+            
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.CategoryID
+                </td>
+                <td>
+                    @item.CategoryName
+                </td>
+                <td>
+                    <a href="~/Category/Edit">
+                        Edit
+                    </a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>

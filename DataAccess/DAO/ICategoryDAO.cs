@@ -10,5 +10,12 @@ namespace DataAccess.DAO
     public interface ICategoryDAO
     {
         List<CategoryDTO> Categories_GetList();
+        CategoryDTO Categories_GetDetail(int CategoryID);
+
+        int Categories_CategoryEdit(int CategoryID, string CategoryName);
+
+
+
     }
+    
 }

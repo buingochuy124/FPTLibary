@@ -193,6 +193,9 @@
     <Content Include="Views\Home\PopupPartial.cshtml" />
     <Content Include="Views\Seller\CreateSeller.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Category\CategoryManagementPartialView.cshtml" />
+    <Content Include="Views\Category\CategoryDetail.cshtml" />
+    <Content Include="Views\Category\CategoryEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

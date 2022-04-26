@@ -136,7 +136,8 @@ namespace DataAccess.DAOImpl
                         Cost = int.Parse(read["Cost"].ToString()),
                         Quantity = int.Parse(read["Quantity"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
-                        SellerID = int.Parse(read["SellerID"].ToString())
+                        SellerID = int.Parse(read["SellerID"].ToString()),
+                        BookImageURL= read["BookURL"].ToString()
 
                     };
                 }

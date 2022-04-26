@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FPTLibary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,7 +32,42 @@ namespace FPTLibary.Controllers
             }
 
         }
+        public ActionResult CategoryManagementPartialView()
+        {
+            var result = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_GetList(); 
+           
+            return View(result);
+        }
+        public ActionResult CategoryDetail(int CategoryID)
+        {
+            var result = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_GetDetail(CategoryID);
 
+            return View(result);  
+        }
+        public ActionResult CategoryEdit(int CategoryID)
+        {
+            var result = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_GetDetail(CategoryID);
+
+            return View(result);
+        }
+        public JsonResult CategoryUpdate(int CategoryID, String CategoryName)
+        {
+            var returnData = new ReturnData();
+            var result = new DataAccess.DAOImpl.CategoryDAOImpl().Categories_CategoryEdit(CategoryID, CategoryName);
+            if (result<0)
+            {
+                returnData.Description = "fail";
+                returnData.ResponseCode = -99;
+                return Json(returnData, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                returnData.Description = "success";
+                returnData.ResponseCode = 1;
+                return Json(returnData, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult CategoryGetListBook(int CategoryID)
         {
             var userSession = Session[DataAccess.Libs.Config.SessionAccount];
@@ -70,6 +106,7 @@ namespace FPTLibary.Controllers
                     return View(result);
                 }
             }
+            
             catch (Exception)
             {
 

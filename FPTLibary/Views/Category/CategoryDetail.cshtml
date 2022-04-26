@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "CategoryDetail";
+}
+
+@model DataAccess.DTO.CategoryDTO
+
+
+<h2>CategoryDetail</h2>
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                CategoryID
+            </th>
+            <th>
+                CategoryName
+            </th>
+            <th>
+                Edit
+            </th>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr>
+                <td>
+                    @Model.CategoryID
+                </td>
+                <td>
+                    @Model.CategoryName
+                </td>
+                <td>
+                    <a href="~/Category/CategoryEdit">
+                        Edit
+                    </a>
+                </td>
+
+            </tr>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
