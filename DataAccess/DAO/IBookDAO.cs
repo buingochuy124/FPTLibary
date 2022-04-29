@@ -7,7 +7,7 @@ namespace DataAccess.DAO
     {
         List<BookDTO> Books_GetList();
 
-        int Book_Create(string BookName, float Cost, int Quantity, int CategoryID);
+        int Book_Create(string BookISBN, string BookName, string Author, float Cost, int Pages, int CategoryID, string Description, string BookImage);
 
         BookDTO Book_GetDetail(int? BookID);
 

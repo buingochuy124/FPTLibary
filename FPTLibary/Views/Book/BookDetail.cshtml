@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "BookDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
 
 <h2>BookDetail</h2>
@@ -22,7 +21,7 @@
             <span class="text-muted">Title: @(Model.BookName) </span><br />
             <span class="text-muted">Cost: @(Model.Cost) VND</span><br />
             <span class="text-muted">Category: @(Model.CategoryName) </span><br />
-            <span class="text-muted">Quantity@(Model.Quantity) </span><br />
+            <span class="text-muted">Quantity@(Model.Page) </span><br />
             <span class="text-muted">Seller: @(Model.SellerName) </span><br />
             <br />
 
@@ -55,7 +54,7 @@
                     alert(des);
 
                     setTimeout(function () {
-                        window.location.href = "/UserInvent/Index";
+                        window.location.href = "/UserInvent/UserInventPartialView";
                     }, 1000);
 
                 }

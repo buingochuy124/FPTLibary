@@ -27,11 +27,16 @@
                             <h5 class="card-title">Title: @Model[j].BookName</h5>
                             <p class="card-text">Cost: @Model[j].Cost VND</p>
                             <p class="card-text">Category: @Model[j].CategoryName</p>
-                            <p class="card-text">Quantity: @Model[j].Quantity</p>
+                            <p class="card-text">Quantity: @Model[j].Page</p>
                             <a class="btn btn-primary"
                                href="/Book/BookDetail?BookID=@Model[i].BookID"
                                role="button">
                                 Detail
+                            </a>
+                            <a class="btn btn-primary"
+                               href="/Book/BookEdit?BookID=@Model[i].BookID"
+                               role="button">
+                                Edit
                             </a>
                         </div>
                     </div>
@@ -45,73 +50,6 @@
 
 </div>
 
-@*@{
-        for (int i = 0; i < Model.Count; i++)
-        {
-            <li class="list-group-item col-lg-4">
-
-                <div class="col-md-2 col-lg-4 col-xl-4">
-                    <div>
-                        <img href="https://imgbb.com/" src="@Model[i].BookImage">
-                    </div>
-                </div>
-                <div class="col-md-9 col-lg-7 col-xl-4">
-                    <div class="single-product">
-
-                        <div>
-                            <h3>@Model[i].BookName</h3>
-                            <h5>@Model[i].Cost VND</h5>
-                            <h5>@Model[i].CategoryName</h5>
-                            <h5>@Model[i].Quantity</h5>
-                            <h5>@Model[i].SellerName</h5>
-                            <h5>
-
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        }
-    }*@
-
-
-@*@if (Model != null && Model.Count > 0)
-    {
-        foreach (var item in Model)
-        {
-            <ul class="list-group-item col-lg-3">
-
-                <div class="col-md-4 col-lg-6 col-xl-3">
-                    <div>
-                        <img href="https://imgbb.com/" src="@item.BookImage" width="200">
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-8 col-xl-6">
-                    <div class="single-product">
-
-                        <div>
-                            <h3>@item.BookName</h3>
-                            <h5>@item.Cost VND</h5>
-                            <h5>@item.CategoryName</h5>
-                            <h5>@item.Quantity</h5>
-                            <h5>@item.SellerName</h5>
-                            <h5>
-                                <a class="btn btn-primary"
-                                   href="/Book/BookDetail?BookID=@item.BookID"
-                                   role="button">
-                                    Detail
-                                </a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-
-            </ul>
-
-        }
-
-    }*@
 
 
 

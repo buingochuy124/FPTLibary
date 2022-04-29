@@ -2,7 +2,6 @@
 using FPTLibary.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace FPTLibary.Controllers
@@ -106,7 +105,7 @@ namespace FPTLibary.Controllers
                     return Json(returnData, JsonRequestBehavior.AllowGet);
 
                 }
-                else if(result == 0)
+                else if (result == 0)
                 {
                     returnData.ResponseCode = 0;
                     returnData.Description = "You already have this book in your inventory !!!";

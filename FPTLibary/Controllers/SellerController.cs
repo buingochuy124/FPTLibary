@@ -21,11 +21,11 @@ namespace FPTLibary.Controllers
             var result = new DataAccess.DTO.SellerDTO();
             result.SaleDate = dt;
 
-            
+
             return View(result);
         }
 
-        public JsonResult InsertSeller(string SellerName ,DateTime DateTime)
+        public JsonResult InsertSeller(string SellerName, DateTime DateTime)
         {
 
 

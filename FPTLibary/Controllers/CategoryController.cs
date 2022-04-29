@@ -32,6 +32,8 @@ namespace FPTLibary.Controllers
 
         }
 
+
+        
         public ActionResult CategoryGetListBook(int CategoryID)
         {
             var userSession = Session[DataAccess.Libs.Config.SessionAccount];
