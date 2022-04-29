@@ -10,7 +10,7 @@ namespace DataAccess
             SqlConnection sqlconn = null;
             try
             {
-                var connectName = "Server=.;Database=FPTLibrary;Trusted_Connection=True;";
+                var connectName = "Server=.;Database=FPTLibrary;Trusted_Connection=True;Max Pool Size=400";
 
                 sqlconn = new SqlConnection(connectName);
 

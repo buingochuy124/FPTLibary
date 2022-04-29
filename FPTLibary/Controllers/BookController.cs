@@ -92,9 +92,7 @@ namespace FPTLibary.Controllers
                 foreach (var item in result)
                 {
                     item.CategoryName = new DataAccess.DAOImpl.CategoryDAOImpl()
-                        .Categories_GetList()
-                        .FirstOrDefault(c => c.CategoryID == item.CategoryID)
-                        .CategoryName;
+                        .Category_GetDetailByID(item.CategoryID).CategoryName;
                 }
                 return PartialView(result);
             }
@@ -163,10 +161,10 @@ namespace FPTLibary.Controllers
                     .Categories_GetList()
                     .FirstOrDefault(c => c.CategoryID == result.CategoryID)
                     .CategoryName;
-                result.SellerName = new DataAccess.DAOImpl.SellerDAOImpl()
-                    .Sellers_GetList()
-                    .FirstOrDefault(s => s.SellerID == result.SellerID)
-                    .SellerName;
+                //result.SellerName = new DataAccess.DAOImpl.SellerDAOImpl()
+                //    .Sellers_GetList()
+                //    .FirstOrDefault(s => s.SellerID == result.SellerID)
+                //    .SellerName;
 
 
                 return View(result);
@@ -236,7 +234,7 @@ namespace FPTLibary.Controllers
                         var bookImageURL = ws.Cells[rw, 8].Value != null ? ws.Cells[rw, 8].Value.ToString() : string.Empty;
 
                         var categoryID = new DataAccess.DAOImpl.CategoryDAOImpl().Category_GetDetailByName(categoryName).CategoryID;
-                        var result =  new DataAccess.DAOImpl.BookDAOImpl().Book_Create(bookISBN, title, author, float.Parse(bookCost), int.Parse(bookPages), categoryID, bookDescription, bookImageURL);
+                        var result =  new DataAccess.DAOImpl.BookDAOImpl().Book_Create(bookISBN, title, author, double.Parse(bookCost), int.Parse(bookPages), categoryID, bookDescription, bookImageURL);
 
                         var err_des = "";
                         try
@@ -330,7 +328,7 @@ namespace FPTLibary.Controllers
                         Sheet.Cells[string.Format("B{0}", row)].Value = item.BookName;
                         Sheet.Cells[string.Format("D{0}", row)].Value = item.Author;
                         Sheet.Cells[string.Format("D{0}", row)].Value = item.CategoryName;
-                        Sheet.Cells[string.Format("E{0}", row)].Value = item.Page;
+                        Sheet.Cells[string.Format("E{0}", row)].Value = item.Pages;
                         Sheet.Cells[string.Format("D{0}", row)].Value = item.Cost;
                         Sheet.Cells[string.Format("G{0}", row)].Value = item.Description;
                         Sheet.Cells[string.Format("H{0}", row)].Value = item.BookImageURL;

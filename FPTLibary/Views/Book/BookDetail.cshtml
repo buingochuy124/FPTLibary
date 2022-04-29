@@ -18,14 +18,15 @@
             <img href="https://imgbb.com/" src="@Model.BookImageURL" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
         </div>
         <div class="card-footer">
-            <span class="text-muted">Title: @(Model.BookName) </span><br />
-            <span class="text-muted">Cost: @(Model.Cost) VND</span><br />
-            <span class="text-muted">Category: @(Model.CategoryName) </span><br />
-            <span class="text-muted">Quantity@(Model.Page) </span><br />
-            <span class="text-muted">Seller: @(Model.SellerName) </span><br />
+            <p class="card-text">Cost: @Model.Cost $</p>
+            <p class="card-text">Category: @Model.CategoryName</p>
+            <p class="card-text">Pages: @Model.Pages</p>
+            <p class="card-text">ISBN: @Model.BookISBN</p>
+            <p class="card-text">Author: @Model.Author</p>
+            <p class="card-text">Description: @Model.Description</p>
             <br />
 
-            <a id="btn_addBookToInvent"  class="btn btn-primary"
+            <a id="btn_addBookToInvent" class="btn btn-primary"
                role="button">
                 Order
             </a>

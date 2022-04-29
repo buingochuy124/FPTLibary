@@ -25,14 +25,16 @@ namespace DataAccess.DAOImpl
                     result.Add(new BookDTO
                     {
                         BookID = int.Parse(read["BookID"].ToString()),
+                        BookISBN = read["ISBN"].ToString(),
+
                         BookName = read["BookName"].ToString(),
-                        Cost = int.Parse(read["Cost"].ToString()),
-                        Page = int.Parse(read["Pages"].ToString()),
+                        Cost = double.Parse(read["Cost"].ToString()),
+                        Pages = int.Parse(read["Pages"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
                         BookImageURL = read["BookURL"].ToString(),
-                        SellerID = int.Parse(read["SellerID"].ToString()),
+                        // SellerID = int.Parse(read["SellerID"].ToString()),
                         Author = read["Author"].ToString(),
-                        Description = read["BookDescription"].ToString(),
+                        Description = read["BookDescription"].ToString()
 
 
                     });
@@ -66,14 +68,16 @@ namespace DataAccess.DAOImpl
                     result.Add(new BookDTO
                     {
                         BookID = int.Parse(read["BookID"].ToString()),
+                        BookISBN = read["ISBN"].ToString(),
+
                         BookName = read["BookName"].ToString(),
-                        Cost = int.Parse(read["Cost"].ToString()),
-                        Page = int.Parse(read["Pages"].ToString()),
+                        Cost = double.Parse(read["Cost"].ToString()),
+                        Pages = int.Parse(read["Pages"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
                         BookImageURL = read["BookURL"].ToString(),
-                        SellerID = int.Parse(read["SellerID"].ToString()),
+                       // SellerID = int.Parse(read["SellerID"].ToString()),
                         Author = read["Author"].ToString(),
-                        Description = read["BookDescription"].ToString(),
+                        Description = read["BookDescription"].ToString()
 
                     });
                 }
@@ -87,7 +91,7 @@ namespace DataAccess.DAOImpl
             }
         }
 
-        public int Book_Create(string BookISBN, string BookName, string Author, float Cost, int Pages, int CategoryID,string Description,string BookImage)
+        public int Book_Create(string BookISBN, string BookName, string Author, double Cost, int Pages, int CategoryID,string Description,string BookImage)
         {
             var result = 0;
             try
@@ -118,7 +122,7 @@ namespace DataAccess.DAOImpl
 
 
             }
-            catch (Exception ex)
+            catch (System.Exception)
             {
                 throw;
             }
@@ -144,13 +148,13 @@ namespace DataAccess.DAOImpl
                     {
                         BookID = int.Parse(read["BookID"].ToString()),
                         BookName = read["BookName"].ToString(),
-                        Cost = int.Parse(read["Cost"].ToString()),
-                        Page = int.Parse(read["Pages"].ToString()),
+                        Cost = double.Parse(read["Cost"].ToString()),
+                        Pages = int.Parse(read["Pages"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
                         BookImageURL = read["BookURL"].ToString(),
                         SellerID = int.Parse(read["SellerID"].ToString()),
                         Author = read["Author"].ToString(),
-                        Description = read["BookDescription"].ToString(),
+                        Description = read["BookDescription"].ToString()
 
                     };
                 }

@@ -14,20 +14,27 @@
 <div class="container">
     @for (int i = 0; i < nRow; i++)
     {
-        <div class="row" style="width:auto">
+        <div class="row list-group-item " style="height:max-content">
             @{
                 var target = (i + 1) * a < n ? (i + 1) * a : n;
             }
             @for (int j = (i * a); j < target; j++)
             {
-                <div class="list-group-item col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img href="https://imgbb.com/" src="@Model[j].BookImageURL" class="card-img-top" width="150">
+                <div class="col-sm-4">
+                    <div class="card " style="width: 18rem;"  >
+                        <img  class="card-img-top " src="@Model[j].BookImageURL" style="display:flex;text-align:center;justify-content:center">
                         <div class="card-body">
-                            <h5 class="card-title">Title: @Model[j].BookName</h5>
-                            <p class="card-text">Cost: @Model[j].Cost VND</p>
-                            <p class="card-text">Category: @Model[j].CategoryName</p>
-                            <p class="card-text">Quantity: @Model[j].Page</p>
+                            <div>
+
+                                <h5 class="card-title">Title: @Model[j].BookName</h5>
+                                @*<p class="card-text">Cost: @Model[j].Cost $</p>
+                                <p class="card-text">Category: @Model[j].CategoryName</p>
+                                <p class="card-text">Pages: @Model[j].Pages</p>
+                                <p class="card-text">ISBN: @Model[j].BookISBN</p>
+                                <p class="card-text">Author: @Model[j].Author</p>*@
+                                <p class="card-text">Description: @Model[j].Description</p>
+                            </div>
+
                             <a class="btn btn-primary"
                                href="/Book/BookDetail?BookID=@Model[i].BookID"
                                role="button">
@@ -44,7 +51,9 @@
 
             }
 
+
         </div>
+        <br />
     }
 
 

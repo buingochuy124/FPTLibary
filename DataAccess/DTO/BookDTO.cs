@@ -4,8 +4,8 @@
     {
         public int BookID { get; set; }
         public string BookName { get; set; }
-        public float Cost { get; set; }
-        public int Page { get; set; }
+        public double Cost { get; set; }
+        public int Pages { get; set; }
         public string Author { get; set; }
 
         public int CategoryID { get; set; }

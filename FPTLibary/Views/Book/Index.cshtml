@@ -17,16 +17,19 @@
     if (Model.RoleID == 1)
     {
         <a class="btn btn-primary" href="/Book/BookCreate" role="button"><i>Add Book</i>  </a>
-
-
-        <div class="form-group">
-            <label>Chose User Data File</label>
-            <input type="file" class="form-control" id="ExcelFile">
-        </div>
-
-        <button type="button" id="btn_ImportExcel" class="btn btn-primary">Import file Excel</button>
+        <br />
 
         <br />
+        <div class="form-group">
+            <label>Chose Book Data File</label>
+            <input type="file" class="form-control" id="ExcelFile">
+            <button type="button" id="btn_ImportExcel" class="btn btn-primary">Import file Excel</button>
+
+        </div>
+
+
+        <br />
+
 
         <button type="button" id="btn_ExportExcel" class="btn btn-primary">Export to file Excel</button>
     }
