@@ -209,6 +209,8 @@
     <Content Include="Views\Seller\CreateSeller.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Book\BookEdit.cshtml" />
+    <Content Include="Views\Seller\Index.cshtml" />
+    <Content Include="Views\Seller\ListSellerPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
