@@ -5,52 +5,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="card-columns">
 
-    <h2>Welcome to </h2>
-
-    @if (Model != null && Model.Count > 0)
+<h2>Welcome to </h2>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
     {
-        foreach (var item in Model)
-        {
-            <div class="row list-group-item " style="height:max-content">
+        <div class="list-group-item row" style="width: 80rem;">
 
+            <div class="card col-lg-6" >
 
-                <div class="col-sm-4">
-                    <div class="card " style="width: 18rem;">
-                        <img class="card-img-top " src="@item.BookImageURL" style="display:flex;text-align:center;justify-content:center">
-                        <div class="card-body">
-                            <div>
+                <div class="card-body">
+                    <img src="@item.BookImageURL">
 
-                                <h5 class="card-title">Title: @item.BookName</h5>
-                                @*<p class="card-text">Cost: @Model[j].Cost $</p>
-                                    <p class="card-text">Category: @Model[j].CategoryName</p>
-                                    <p class="card-text">Pages: @Model[j].Pages</p>
-                                    <p class="card-text">ISBN: @Model[j].BookISBN</p>
-                                    <p class="card-text">Author: @Model[j].Author</p>*@
-                                <p class="card-text">Description: @item.Description</p>
-                            </div>
+                    <div>
+                        <div>
 
-                            <a class="btn btn-primary"
-                               href="/Book/BookDetail?BookID=@item.BookID"
-                               role="button">
-                                Detail
-                            </a>
-                            <a class="btn btn-primary"
-                               href="/Book/BookEdit?BookID=@item.BookID"
-                               role="button">
-                                Edit
-                            </a>
+                            <h5 class="card-title"><b>Title:</b> @item.BookName</h5>
+                            @*<p class="card-text">Cost: @Model[j].Cost $</p>
+                                <p class="card-text">Category: @Model[j].CategoryName</p>
+                                <p class="card-text">Pages: @Model[j].Pages</p>
+                                <p class="card-text">ISBN: @Model[j].BookISBN</p>
+                                <p class="card-text">Author: @Model[j].Author</p>*@
+                            <p class="card-text"><b>Description:</b> @item.Description</p>
                         </div>
+
+                        <a class="btn btn-primary"
+                           href="#  "
+                           role="button">
+                            Read
+                        </a>
                     </div>
+
+
                 </div>
-
-
-
             </div>
-            <br />
-        }
-    }
 
-</div>
+
+
+        </div>
+    }
+}
 

@@ -2,6 +2,7 @@
 using FPTLibary.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace FPTLibary.Controllers
@@ -32,7 +33,7 @@ namespace FPTLibary.Controllers
                     }
 
                 }
-                return RedirectToAction("UserInvent", "UserInvent");
+                return RedirectToAction("UserInventPartialView", "UserInvent");
             }
             catch (Exception)
             {
@@ -58,29 +59,39 @@ namespace FPTLibary.Controllers
             var returnData = new ReturnData();
             var listUserInvent = new List<UserInventDTO>();
             var userAccount = (UserDTO)Session[DataAccess.Libs.Config.SessionAccount];
-            var userID = userAccount.UserId;
+            var userRole = new DataAccess.DAOImpl.RoleDAOImpl().Roles_GetList();
+
             var result = new List<DataAccess.DTO.BookDTO>();
             try
             {
-                if (userAccount.UserId != userID)
+                if(userAccount == null)
                 {
-                    returnData.ResponseCode = -998;
-                    returnData.Description = "You not have permission to see other book invent!!!";
-                    return RedirectToAction("Index", "Book");
+                    return RedirectToAction("Login", "Unauthenticate");
                 }
                 else
                 {
-                    listUserInvent = new DataAccess.DAOImpl.UserInventDAOImpl()
-                    .UserInvent_GetDetail(userID);
-
-                    foreach (var item in listUserInvent)
+                    if (userRole.Where(u => u.RoleID == userAccount.UserId)
+                                        .FirstOrDefault(u => u.RoleID == 1) != null)
                     {
-                        result.Add(new DataAccess.DAOImpl.BookDAOImpl()
-                            .Book_GetDetail(item.BookID));
+                        returnData.ResponseCode = -998;
+                        returnData.Description = "You not have permission to see other book invent!!!";
+                        return RedirectToAction("Index", "Book");
                     }
-                    return PartialView(result);
+                    else
+                    {
+                        listUserInvent = new DataAccess.DAOImpl.UserInventDAOImpl()
+                        .UserInvent_GetDetail(userAccount.UserId);
 
+                        foreach (var item in listUserInvent)
+                        {
+                            result.Add(new DataAccess.DAOImpl.BookDAOImpl()
+                                .Book_GetDetail(item.BookID));
+                        }
+                        return PartialView(result);
+
+                    }
                 }
+                
             }
             catch (Exception)
             {

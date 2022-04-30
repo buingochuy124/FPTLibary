@@ -177,7 +177,7 @@ namespace FPTLibary.Controllers
             }
 
         }
-        public ActionResult BookEdit(int? BookID)
+        public ActionResult BookEdit(int BookID)
         {
             var result = new DataAccess.DAOImpl.BookDAOImpl().Book_GetDetail(BookID);
             return View(result);
@@ -325,13 +325,13 @@ namespace FPTLibary.Controllers
                     {
                         Sheet.Cells[string.Format("A{0}", row)].Value = item.BookID;
                         Sheet.Cells[string.Format("B{0}", row)].Value = item.BookISBN;
-                        Sheet.Cells[string.Format("B{0}", row)].Value = item.BookName;
+                        Sheet.Cells[string.Format("C{0}", row)].Value = item.BookName;
                         Sheet.Cells[string.Format("D{0}", row)].Value = item.Author;
-                        Sheet.Cells[string.Format("D{0}", row)].Value = item.CategoryName;
-                        Sheet.Cells[string.Format("E{0}", row)].Value = item.Pages;
-                        Sheet.Cells[string.Format("D{0}", row)].Value = item.Cost;
-                        Sheet.Cells[string.Format("G{0}", row)].Value = item.Description;
-                        Sheet.Cells[string.Format("H{0}", row)].Value = item.BookImageURL;
+                        Sheet.Cells[string.Format("E{0}", row)].Value = item.CategoryName;
+                        Sheet.Cells[string.Format("F{0}", row)].Value = item.Pages;
+                        Sheet.Cells[string.Format("G{0}", row)].Value = item.Cost;
+                        Sheet.Cells[string.Format("H{0}", row)].Value = item.Description;
+                        Sheet.Cells[string.Format("I{0}", row)].Value = item.BookImageURL;
 
 
                         row++;

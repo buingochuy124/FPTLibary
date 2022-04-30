@@ -128,7 +128,7 @@ namespace DataAccess.DAOImpl
             }
         }
 
-        public BookDTO Book_GetDetail(int? BookID)
+        public BookDTO Book_GetDetail(int BookID)
         {
             var result = new BookDTO();
             try
@@ -147,12 +147,14 @@ namespace DataAccess.DAOImpl
                     result = new BookDTO
                     {
                         BookID = int.Parse(read["BookID"].ToString()),
+                        BookISBN = read["ISBN"].ToString(),
+
                         BookName = read["BookName"].ToString(),
                         Cost = double.Parse(read["Cost"].ToString()),
                         Pages = int.Parse(read["Pages"].ToString()),
                         CategoryID = int.Parse(read["CategoryID"].ToString()),
                         BookImageURL = read["BookURL"].ToString(),
-                        SellerID = int.Parse(read["SellerID"].ToString()),
+                        // SellerID = int.Parse(read["SellerID"].ToString()),
                         Author = read["Author"].ToString(),
                         Description = read["BookDescription"].ToString()
 
